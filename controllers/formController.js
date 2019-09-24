@@ -2,20 +2,31 @@ const Form  = require('../models/form');
 
 exports.create = function(req, res, next){
     const {firstName, lastName, email, employed, employer, employerAddress} = req.body;
+    console.log("1");
 
     if(!firstName || !lastName){
       return res.status(422).send({error : 'First name and last name must be provided'});
     }
+    console.log("2");
+
     Form.findOne({ firstName : firstName, lastName : lastName  }, function(err, existing){
       if(err){
+    console.log("3");
+
         return next(err);
       }
       if(existing){
+    console.log("4");
+
         return res.status(422).send({error: 'The record already exist for this person'});
       }
-      const form = new Form({firstName, lastName, email, emaployed, employer, employerAddress });
+    console.log("5");
+
+      const form = new Form({firstName, lastName, email, employed, employer, employerAddress });
       form.save(function(err){
         if(err) {
+    console.log("6");
+
           return next(err);
         }
         res.json(form);

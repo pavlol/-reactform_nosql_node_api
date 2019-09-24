@@ -11,6 +11,7 @@ const dbConnection = process.env.NODE_ENV === 'production' ? process.env.dbConne
 //DB setup
 const db = dbConnection;  //or mongoose.connect('mongodb://localhost:27017/dbname');
 var promise = mongoose.connect(db, {
+    useNewUrlParser: true 
 });
 
 // App setup
